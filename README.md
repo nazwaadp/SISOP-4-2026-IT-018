@@ -42,7 +42,6 @@ Tidak hanya itu, program juga harus nambah satu file virtual bernama `tujuan.txt
 Pada bagian ini, soal minta agar arsip dari flashdisk diekstrak terlebih dahulu. Hasil akhirnya harus berupa folder `amba_files/` yang berisi file `1.txt` sampai `7.txt`. Setelah proses unzip selesai, file zip wajib dihapus agar tidak tersisa di working directory.
 
 Sebelum mengambil arsip, folder `soal_1` hanya berisi file program utama, yaitu `kenz_rescue.c`.
-
 Setelah itu, program dikompilasi terlebih dahulu agar menghasilkan executable `kenz_rescue`.
 
 ```bash
@@ -59,6 +58,7 @@ Kemudian dibuat folder `mnt` sebagai mount directory.
 ```bash
 mkdir mnt
 ```
+
 ![mnt](assets/soal_1/mnt.png)
 
 Setelah itu, arsip `amba_files.zip` diunduh menggunakan `gdown`.
@@ -66,6 +66,7 @@ Setelah itu, arsip `amba_files.zip` diunduh menggunakan `gdown`.
 ```bash
 gdown "https://drive.google.com/file/d/1nLXFhptDo2mnULZsw8pTwyAVpV49W20U/view?usp=drive_link" -O amba_files.zip
 ```
+
 ![downloadzip](assets/soal_1/gdown.png)
 
 File tersebut kemudian diekstrak menggunakan command:
@@ -73,6 +74,7 @@ File tersebut kemudian diekstrak menggunakan command:
 ```bash
 unzip amba_files.zip
 ```
+
 ![unzip](assets/soal_1/unzip.png)
 
 Setelah proses unzip selesai, muncul folder `amba_files/` yang berisi tujuh file catatan.
@@ -92,6 +94,7 @@ rm amba_files.zip
 ```
 
 Setelah dihapus, struktur akhir working directory menjadi:
+
 ![rmzip](<assets/soal_1/hapus file zip.png>)
 
 Dengan begitu, poin ini sudah terpenuhi karena arsip berhasil diekstrak menjadi folder `amba_files/`, isi file lengkap dari `1.txt` sampai `7.txt`, dan file zip sudah tidak tersisa di working directory.
@@ -602,6 +605,7 @@ Hasil tersebut sama dengan isi `mnt/tujuan.txt`, sehingga poin ini sudah berhasi
 #### 1. Struktur awal repository
 
 Pada awal pengerjaan, folder `soal_1` hanya berisi file `kenz_rescue.c`.
+
 ![1](assets/soal_1/1.png)
 
 ---
@@ -609,6 +613,7 @@ Pada awal pengerjaan, folder `soal_1` hanya berisi file `kenz_rescue.c`.
 #### 2. Compile program dan membuat mount directory
 
 Program dikompilasi menggunakan `gcc` dengan library FUSE. Setelah compile berhasil, muncul executable `kenz_rescue`. Kemudian dibuat folder `mnt` sebagai mount directory.
+
 ![2](assets/soal_1/2.png)
 
 ---
@@ -616,6 +621,7 @@ Program dikompilasi menggunakan `gcc` dengan library FUSE. Setelah compile berha
 #### 3. Download arsip `amba_files.zip`
 
 Arsip catatan Mas Amba diunduh menggunakan `gdown` dan disimpan dengan nama `amba_files.zip`.
+
 ![3](assets/soal_1/3.png)
 
 ---
@@ -623,6 +629,7 @@ Arsip catatan Mas Amba diunduh menggunakan `gdown` dan disimpan dengan nama `amb
 #### 4. Unzip arsip dan cek isi `amba_files`
 
 Setelah arsip diekstrak, muncul folder `amba_files/` yang berisi file `1.txt` sampai `7.txt`.
+
 ![4](assets/soal_1/4.png)
 
 ---
@@ -630,6 +637,7 @@ Setelah arsip diekstrak, muncul folder `amba_files/` yang berisi file `1.txt` sa
 #### 5. Menghapus file zip
 
 Setelah proses unzip selesai, file `amba_files.zip` dihapus. Hasil `tree` menunjukkan bahwa file zip sudah tidak ada di working directory.
+
 ![5](assets/soal_1/5.png)
 
 ---
@@ -641,6 +649,7 @@ Program dijalankan dengan `amba_files` sebagai source directory dan `mnt` sebaga
 ```bash
 ./kenz_rescue amba_files -f mnt
 ```
+
 ![6](assets/soal_1/6.png)
 
 ---
@@ -648,6 +657,7 @@ Program dijalankan dengan `amba_files` sebagai source directory dan `mnt` sebaga
 #### 7. Isi mount directory
 
 Setelah FUSE berjalan, folder `mnt/` berisi file `1.txt` sampai `7.txt` dan file virtual `tujuan.txt`.
+
 ![7](assets/soal_1/7.png)
 
 ---
@@ -655,6 +665,7 @@ Setelah FUSE berjalan, folder `mnt/` berisi file `1.txt` sampai `7.txt` dan file
 #### 8. Passthrough file `1.txt`
 
 Isi `mnt/1.txt` dibandingkan dengan `amba_files/1.txt`. Hasilnya sama, sehingga file pada mount directory berhasil membaca isi dari file asli.
+
 ![8](assets/soal_1/8.png)
 
 ---
@@ -662,6 +673,7 @@ Isi `mnt/1.txt` dibandingkan dengan `amba_files/1.txt`. Hasilnya sama, sehingga 
 #### 9. Pengecekan semua file dengan `diff`
 
 Seluruh file `1.txt` sampai `7.txt` dicek menggunakan `diff`. Semua file menghasilkan output `OK`, sehingga isi file pada mount directory identik dengan source directory.
+
 ![9](assets/soal_1/9.png)
 
 ---
@@ -669,6 +681,7 @@ Seluruh file `1.txt` sampai `7.txt` dicek menggunakan `diff`. Semua file menghas
 #### 10. Fragmen `KOORD:` dari setiap file
 
 Setiap file memiliki baris dengan prefix `KOORD:`. Fragmen-fragmen tersebut digabungkan secara urut untuk menghasilkan isi `tujuan.txt`.
+
 ![10](assets/soal_1/10.png)
 
 ---
@@ -676,6 +689,7 @@ Setiap file memiliki baris dengan prefix `KOORD:`. Fragmen-fragmen tersebut diga
 #### 11. Isi file virtual `tujuan.txt`
 
 File `tujuan.txt` berhasil menampilkan hasil gabungan fragmen koordinat dari `1.txt` sampai `7.txt`.
+
 ![11](assets/soal_1/11.png)
 
 ---
@@ -683,6 +697,7 @@ File `tujuan.txt` berhasil menampilkan hasil gabungan fragmen koordinat dari `1.
 #### 12. File `tujuan.txt` tidak ada di source directory
 
 File `tujuan.txt` hanya muncul di mount directory dan tidak ada secara fisik di folder `amba_files/`.
+
 ![12](assets/soal_1/12.png)
 
 ---
